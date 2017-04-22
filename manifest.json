@@ -1,0 +1,21 @@
+{
+  "short_name": "Paetm - midhruvjaink",
+  "name":"Paetm - midhruvjaink",
+  "icons":[
+    {
+      "src":"logo-120.jpg",
+      "sizes":"120x120",
+      "type":"image/jpg"
+    },
+    {
+      "src":"logo-240.jpg",
+      "sizes":"240x240",
+      "type":"image/jpg"
+    }
+  ],
+  "start_url":"index.html",
+  "display":"standalone",
+  "orientation":"portrait",
+  "theme_color": "#fff",
+  "background_color": "#fff"
+}

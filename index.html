@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <title>Paetm</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style media="screen">
+      img{
+        width: 100%;
+      }
+      #success{
+        position: relative;
+      }
+      #bottom_image{
+        position: fixed;
+        bottom: 0;
+      }
+      #amount_transferred{
+        font-size: 42px;
+        font-weight: bold;
+      }
+      #mobile_number{
+        font-size: 38px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main" class="container" style="padding-top:40px;font-size:24px;">
+      <center>
+        <label for="receiver_name">Receiver Name</label>
+        <input placeholder="Name of the receiver" id="receiver_name" type="text" class="validate">
+        <label for="receiver_number">Receiver Number</label>
+        <input placeholder="Number of the receiver" id="receiver_number" type="number" class="validate">
+        <label for="amout">Enter Amount</label>
+        <input placeholder="Amount" id="amount" type="number" class="validate">
+        <button class="btn waves-effect waves-light" id="submit" type="submit" name="action">Submit
+         <i class="material-icons right">send</i>
+       </button>
+     <center>
+    </div>
+
+    <div id="result" style="display:none;">
+      <div id="upper" class="">
+        <img src="success.png" id="success">
+        <center>
+          <span id="amount_transferred">&#8377 100</span><br><br>
+          <span class="grey-text">Sent Successfully to</span><br>
+          <span id="mobile_number">9680512137</span><br>
+          <span id="name" class="grey-text">Dhruv Jain</span>
+          <img src="separator.png">
+          <span class="grey-text" id="time">09:14 PM, 22 April 2017</span><br>
+          <span class="grey-text">Wallet Txn ID:9468521302</span>
+        </center>
+        <img src="bottom.png" id="bottom_image">
+      </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#submit").on('click', function(){
+          receiver_name = $("#receiver_name").val();
+          receiver_number = $("#receiver_number").val();
+          amount = "&#8377 " + $("#amount").val();
+          $("#main").hide();
+          $("#result").show();
+          $("#amount_transferred").html(amount);
+          $("#mobile_number").html(receiver_number);
+          $("#name").html(receiver_name);
+          date = new Date();
+          month = ["January", "Febraury", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+          time = date.getHours()+":"+date.getMinutes()+", "+date.getDate()+" "+month[date.getMonth()]+" "+date.getFullYear();
+          $("#time").html(time);
+        })
+      })
+    </script>
+  </body>
+</html>
