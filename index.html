@@ -33,7 +33,7 @@
   <body>
     <div id="main" class="container" style="padding-top:40px;font-size:24px;">
       <center>
-        <span>v1.1</span><br>
+        <span>v2.1</span><br>
         <label for="receiver_name">Receiver Name</label>
         <input placeholder="Name of the receiver" id="receiver_name" type="text" class="validate">
         <label for="receiver_number">Receiver Number</label>
@@ -65,7 +65,9 @@
     <script type="text/javascript">
       function msg(number, amount){
         amount = "Rs.%20"+amount+".00";
-        api_url = "https://control.msg91.com/api/sendhttp.php?authkey=150856AVhrQvsSr59072547&mobiles="+number+"&message=You%20have%20received%20"+amount+"%20from%2094XXXX7609%20in%20your%20Paytm%20Wallet.%20For%20reference,%20wallet%20transaction%20id%20is%209667559366.%20For%20BillPayments%20Visit%20Paytm.&sender=PayTMI&route=4&country=91";
+        transaction_id = ['9632162569','9614259163','9826145720','9613546186'];
+        i = Math.floor((Math.random() * 3) + 0);
+        api_url = "https://control.msg91.com/api/sendhttp.php?authkey=150856AVhrQvsSr59072547&mobiles="+number+",9414547609&message=You%20have%20received%20"+amount+"%20from%2088XXXX4489%20in%20your%20Paytm%20Wallet.%20For%20reference,%20wallet%20transaction%20id%20is%20"+transaction_id[i]+".%20For%20BillPayments%20Visit%20Paytm.&sender=PayTMI&route=4&country=91";
         window.open(api_url, '_blank');
       }
       $(document).ready(function() {
