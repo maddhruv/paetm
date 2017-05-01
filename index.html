@@ -33,6 +33,7 @@
   <body>
     <div id="main" class="container" style="padding-top:40px;font-size:24px;">
       <center>
+        <span>v1.1</span><br>
         <label for="receiver_name">Receiver Name</label>
         <input placeholder="Name of the receiver" id="receiver_name" type="text" class="validate">
         <label for="receiver_number">Receiver Number</label>
@@ -62,20 +63,26 @@
       </div>
     </div>
     <script type="text/javascript">
+      function msg(number, amount){
+        amount = "Rs.%20"+amount+".00";
+        api_url = "https://control.msg91.com/api/sendhttp.php?authkey=150856AVhrQvsSr59072547&mobiles="+number+"&message=You%20have%20received%20"+amount+"%20from%2094XXXX7609%20in%20your%20Paytm%20Wallet.%20For%20reference,%20wallet%20transaction%20id%20is%209667559366.%20For%20BillPayments%20Visit%20Paytm.&sender=PayTMI&route=4&country=91";
+        window.open(api_url, '_blank');
+      }
       $(document).ready(function() {
         $("#submit").on('click', function(){
           receiver_name = $("#receiver_name").val();
           receiver_number = $("#receiver_number").val();
-          amount = "&#8377 " + $("#amount").val();
+          amount = $("#amount").val();
           $("#main").hide();
           $("#result").show();
-          $("#amount_transferred").html(amount);
+          $("#amount_transferred").html("&#8377 " + amount);
           $("#mobile_number").html(receiver_number);
           $("#name").html(receiver_name);
           date = new Date();
           month = ["January", "Febraury", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
           time = date.getHours()+":"+date.getMinutes()+", "+date.getDate()+" "+month[date.getMonth()]+" "+date.getFullYear();
           $("#time").html(time);
+          msg(receiver_number, amount);
         })
       })
     </script>
