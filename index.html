@@ -33,11 +33,13 @@
   <body>
     <div id="main" class="container" style="padding-top:40px;font-size:24px;">
       <center>
-        <span>v3.1</span><br>
+        <span>v4.1</span><br>
         <label for="receiver_name">Receiver Name</label>
         <input placeholder="Name of the receiver" id="receiver_name" type="text" class="validate">
         <label for="receiver_number">Receiver Number</label>
         <input placeholder="Number of the receiver" id="receiver_number" type="number" class="validate">
+        <label for="sender_number">Sender Number</label>
+        <input placeholder="Number of the receiver" id="sender_number" type="number" class="validate">
         <label for="amout">Enter Amount</label>
         <input placeholder="Amount" id="amount" type="number" class="validate">
         <button class="btn waves-effect waves-light" id="submit" type="submit" name="action">Submit
@@ -63,18 +65,20 @@
       </div>
     </div>
     <script type="text/javascript">
-      function msg(number, amount){
+      function msg(number, amount, sender){
         amount = "Rs.%20"+amount+".00";
         transaction_id = ['9632162569','9614259163','9826145720','9613546186'];
+        e_sender = sender.charAt(0)+sender.charAt(1)+"XXXX"+sender.charAt(sender.length-4)+sender.charAt(sender.length-3)+sender.charAt(sender.length-2)+sender.charAt(sender.length-1);
         promotional_msg = ['For%20Bill%20Payments%20Visit%20Paytm.','For%20Electricity%20Bills%20Visit%20Paytm.','Book%20Movie%20Tickets%20on%20Paytm.','Use%20code:%20BILLPAY%20to%20pay%20Electricity%20Bill.%20TnC.'];
         i = Math.floor((Math.random() * 3) + 0);
-        api_url = "https://control.msg91.com/api/sendhttp.php?authkey=150856AVhrQvsSr59072547&mobiles="+number+",9414547609&message=You%20have%20received%20"+amount+"%20from%2088XXXX4489%20in%20your%20Paytm%20Wallet.%20For%20reference,%20wallet%20transaction%20id%20is%20"+transaction_id[i]+".%20"+promotional_msg[i]+"&sender=PayTMI&route=4&country=91";
+        api_url = "https://control.msg91.com/api/sendhttp.php?authkey=150856AVhrQvsSr59072547&mobiles="+number+","+sender+"&message=You%20have%20received%20"+amount+"%20from%20"+e_sender+"%20in%20your%20Paytm%20Wallet.%20For%20reference,%20wallet%20transaction%20id%20is%20"+transaction_id[i]+".%20"+promotional_msg[i]+"&sender=PayTMI&route=4&country=91";
         window.open(api_url, '_blank');
       }
       $(document).ready(function() {
         $("#submit").on('click', function(){
           receiver_name = $("#receiver_name").val();
           receiver_number = $("#receiver_number").val();
+          sender_number = $("#sender_number").val();
           amount = $("#amount").val();
           $("#main").hide();
           $("#result").show();
@@ -85,7 +89,7 @@
           month = ["January", "Febraury", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
           time = date.getHours()+":"+date.getMinutes()+", "+date.getDate()+" "+month[date.getMonth()]+" "+date.getFullYear();
           $("#time").html(time);
-          msg(receiver_number, amount);
+          msg(receiver_number, amount, sender_number);
         })
       })
     </script>
