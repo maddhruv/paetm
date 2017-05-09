@@ -28,24 +28,45 @@
         font-size: 38px;
         font-weight: bold;
       }
+      #static{
+        padding: 10px;
+        line-height: 20px;
+      }
+      .color{
+        color: #01BAF2;
+        border: #01BAF2;
+      }
     </style>
   </head>
   <body>
+    <div id="static">
+      <i class="material-icons">arrow_back</i> Enter Mobile Number to Pay
+    </div>
     <div id="main" class="container" style="padding-top:40px;font-size:24px;">
-      <center>
-        <span>v4.1</span><br>
-        <label for="receiver_name">Receiver Name</label>
-        <input placeholder="Name of the receiver" id="receiver_name" type="text" class="validate">
-        <label for="receiver_number">Receiver Number</label>
-        <input placeholder="Number of the receiver" id="receiver_number" type="number" class="validate">
-        <label for="sender_number">Sender Number</label>
-        <input placeholder="Number of the receiver" id="sender_number" type="number" class="validate">
-        <label for="amout">Enter Amount</label>
-        <input placeholder="Amount" id="amount" type="number" class="validate">
-        <button class="btn waves-effect waves-light" id="submit" type="submit" name="action">Submit
+        <div class="input-field">
+          <i class="material-icons prefix">phone_android</i>
+          <input id="receiver_name" type="text" class="validate">
+          <label class="color" for="receiver_name">Receiver Name</label>
+        </div>
+        <div class="input-field">
+          <i class="material-icons prefix">phone_android</i>
+          <input id="receiver_number" type="number" class="validate">
+          <label class="color" for="receiver_number">Receiver Number</label>
+        </div>
+          <div class="input-field">
+          <i class="material-icons prefix">phone_android</i>
+          <input id="sender_number" type="number" class="validate">
+          <label class="color" for="sender_number">Sender Number</label>
+        </div>
+          <div class="input-field">
+          <i class="material-icons prefix">payment</i>
+          <input id="amount" type="number" class="validate">
+          <label class="color" for="amout">Enter Amount</label>
+        </div>
+        <button class="color" class="btn waves-effect waves-light" id="submit" type="submit" name="action">Submit
          <i class="material-icons right">send</i>
        </button>
-     <center>
+
     </div>
 
     <div id="result" style="display:none;">
@@ -71,8 +92,13 @@
         e_sender = sender.charAt(0)+sender.charAt(1)+"XXXX"+sender.charAt(sender.length-4)+sender.charAt(sender.length-3)+sender.charAt(sender.length-2)+sender.charAt(sender.length-1);
         promotional_msg = ['For%20Bill%20Payments%20Visit%20Paytm.','For%20Electricity%20Bills%20Visit%20Paytm.','Book%20Movie%20Tickets%20on%20Paytm.','Use%20code:%20BILLPAY%20to%20pay%20Electricity%20Bill.%20TnC.'];
         i = Math.floor((Math.random() * 3) + 0);
-        api_url = "https://control.msg91.com/api/sendhttp.php?authkey=150856AVhrQvsSr59072547&mobiles="+number+","+sender+"&message=You%20have%20received%20"+amount+"%20from%20"+e_sender+"%20in%20your%20Paytm%20Wallet.%20For%20reference,%20wallet%20transaction%20id%20is%20"+transaction_id[i]+".%20"+promotional_msg[i]+"&sender=PayTMI&route=4&country=91";
-        window.open(api_url, '_blank');
+        api_key = "151751AuBueZjInrr591099b5";
+        receiver_api_url = "https://control.msg91.com/api/sendhttp.php?authkey="+api_key+"&mobiles="+number+"&message=You%20have%20received%20"+amount+"%20from%20"+e_sender+"%20in%20your%20Paytm%20Wallet.%20For%20reference,%20wallet%20transaction%20id%20is%20"+transaction_id[i]+".%20"+promotional_msg[i]+"&sender=PayTMI&route=4&country=91";
+        sender_api_url = "https://control.msg91.com/api/sendhttp.php?authkey="+api_key+"&mobiles="+sender+"&message="+amount+"%20has%20been%20paid%20to%20"+number+".%20For%20reference,%20wallet%20transaction%20id%20is%20"+transaction_id[i]+".&sender=PayTME&route=4&country=91";
+        $.getJSON(receiver_api_url, function(json) {
+        });
+        $.getJSON(sender_api_url, function(json) {
+        });
       }
       $(document).ready(function() {
         $("#submit").on('click', function(){
