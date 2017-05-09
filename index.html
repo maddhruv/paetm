@@ -28,40 +28,25 @@
         font-size: 38px;
         font-weight: bold;
       }
-      #static{
-        padding: 10px;
-        line-height: 20px;
-      }
-      .color{
-        color: #01BAF2;
-        border: #01BAF2;
-      }
     </style>
   </head>
   <body>
-    <div id="static">
-      <i class="material-icons">arrow_back</i> Enter Mobile Number to Pay
-    </div>
     <div id="main" class="container" style="padding-top:40px;font-size:24px;">
         <div class="input-field">
           <i class="material-icons prefix">phone_android</i>
-          <input id="receiver_name" type="text" class="validate">
-          <label class="color" for="receiver_name">Receiver Name</label>
+          <input id="receiver_name" type="text" class="validate" placeholder="Receiver's Name">
         </div>
         <div class="input-field">
           <i class="material-icons prefix">phone_android</i>
-          <input id="receiver_number" type="number" class="validate">
-          <label class="color" for="receiver_number">Receiver Number</label>
+          <input id="receiver_number" type="number" class="validate" placeholder="Receiver's Number ">
         </div>
           <div class="input-field">
           <i class="material-icons prefix">phone_android</i>
-          <input id="sender_number" type="number" class="validate">
-          <label class="color" for="sender_number">Sender Number</label>
+          <input id="sender_number" type="number" class="validate" placeholder="Senders's Number">
         </div>
           <div class="input-field">
           <i class="material-icons prefix">payment</i>
-          <input id="amount" type="number" class="validate">
-          <label class="color" for="amout">Enter Amount</label>
+          <input id="amount" type="number" class="validate" placeholder="Enter amount">
         </div>
         <button class="color" class="btn waves-effect waves-light" id="submit" type="submit" name="action">Submit
          <i class="material-icons right">send</i>
